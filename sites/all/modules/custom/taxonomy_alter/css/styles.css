@@ -1,0 +1,21 @@
+/**
+ * @file
+ * CSS override for admin pages.
+ */
+
+body.logged-in #overlay {
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.field-type-image table .image-widget .image-widget-data {
+  float: left;
+}
+
+/* Fields */
+.fieldset-wrapper .field-name-field-format,
+.fieldset-wrapper .field-name-field-category {
+  border: 1px solid #ccc;
+  margin-bottom: 1em;
+  padding: 1em;
+}

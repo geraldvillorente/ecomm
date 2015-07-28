@@ -1,0 +1,15 @@
+<?php
+/**
+ * @file
+ * Angularify module file.
+ */
+
+
+/**
+ * Build the page.
+ */
+function angular_view_init() {
+  $module_path = drupal_get_path('module', 'angular_view');
+  // Make sure angularjs library is present when we bootstrap this page.
+  drupal_add_library('angularjs', 'angularjs');
+}

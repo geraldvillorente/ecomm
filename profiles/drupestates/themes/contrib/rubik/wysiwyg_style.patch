@@ -1,0 +1,11 @@
+--- style.css	2012-11-12 09:26:09.000000000 +0800
++++ style.css	2012-11-12 09:29:20.000000000 +0800
+@@ -384,3 +384,8 @@
+   font-weight:normal;
+   font-size:16px;
+   }
++
++p {
++  margin:1em 0 !important;
++  clear:both;
++}

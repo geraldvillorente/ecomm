@@ -1,0 +1,123 @@
+<?php
+/**
+ * @file
+ * Taxonomy alter module file.
+ *
+ * @author
+ * geraldvillorente
+ */
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function taxonomy_alter_form_alter(&$form, $form_state, $form_id) {
+  global $user;
+  // Re-arrange article elements.
+  $allow_forms = array(
+    'article_node_form',
+  );
+  if (in_array($form_id, $allow_forms)) {
+    $form['#after_build'][] = '_taxonomy_alter_promote_form_after_build';
+  }
+
+  // For all node forms.
+  if (isset($form['type']['#value']) && $form['type']['#value'] . '_node_form' == $form_id) {
+    // Unset page title fieldset.
+    if (isset($form['page_title'])) {
+      $form['page_title']['#type'] = '';
+    }
+    // Unset scheduler fieldset.
+    if (isset($form['scheduler_settings'])) {
+      $form['scheduler_settings']['#type'] = '';
+    }
+    // Set en as default language.
+    if (isset($form['language'])) {
+      $form['language']['#default_value'] = 'en';
+    }
+    $form['#after_build'][] = '_taxonomy_alter_change_order_form_alter';
+  }
+}
+
+/**
+ * Implements hook_form_search_block_form_alter().
+ */
+function taxonomy_alter_form_search_block_form_alter(&$form, &$form_state) {
+  $form['#submit'][] = '_taxonomy_alter_search_box_submit';
+}
+
+
+/**
+ * Implements custom function _taxonomy_alter_search_box_submit.
+ */
+function _taxonomy_alter_search_box_submit($form, &$form_state) {
+  $form_id = $form['form_id']['#value'];
+  global $base_url;
+
+  if (!empty($form['search_block_form']['#value'])) {
+    $form_state['redirect'] = $base_url . '/search-results?key=' . str_replace(' ', '+', trim($form_state['values'][$form_id]));
+  }
+  else {
+    $form_state['redirect'] = $base_url;
+  }
+}
+
+
+/**
+ * Changing order of custom and core fields.
+ */
+function _taxonomy_alter_change_order_form_alter($form_element, &$form_state) {
+  if (isset($form_element['page_title'])) {
+    $form_element['page_title']['#weight'] = -1;
+    $form_element['page_title']['page_title']['#description'] = t('Enter the page title which is shown at the top of browser windows and in search results.');
+  }
+
+  // Categorisation group.
+  if (isset($form_element['field_category'])) {
+    $form_element['taxonomy']['#type'] = 'fieldset';
+    $form_element['taxonomy']['#title'] = t('Categorisation');
+    // Category.
+    if (isset($form_element['field_category'])) {
+      $form_element['taxonomy']['field_category'] = $form_element['field_category'];
+      $form_element['taxonomy']['field_category']['#weight'] = 1;
+      $form_element['field_category'] = array('#language' => NULL);
+    }
+    // Article format.
+    if (isset($form_element['field_format'])) {
+      $form_element['taxonomy']['field_format'] = $form_element['field_format'];
+      $form_element['taxonomy']['field_format']['#weight'] = 2;
+      $form_element['field_format'] = array('#language' => NULL);
+    }
+    // Tags.
+    if (isset($form_element['field_tags'])) {
+      $form_element['field_tags'][LANGUAGE_NONE]['#description'] = t('Enter tags in a comma separated list');
+      $form_element['taxonomy']['field_tags'] = $form_element['field_tags'];
+      $form_element['taxonomy']['field_tags']['#weight'] = 3;
+      $form_element['field_tags'] = array('#language' => NULL);
+    }
+  }
+  else {
+    $form_element['taxonomy']['#type'] = 'fieldset';
+    $form_element['taxonomy']['#title'] = t('Meta Keywords');
+    // Tags.
+    if (isset($form_element['field_tags'])) {
+      $form_element['field_tags'][LANGUAGE_NONE]['#description'] = t('Enter tags in a comma separated list');
+      $form_element['taxonomy']['field_tags'] = $form_element['field_tags'];
+      $form_element['taxonomy']['field_tags']['#weight'] = 3;
+      $form_element['field_tags'] = array('#language' => NULL);
+    }
+  }
+
+  // Core fields.
+  $form_element['title']['#description'] = t('Enter the headline of the story shown at the top of the page.');
+
+  return $form_element;
+}
+
+
+/**
+ * Promote fields form after build.
+ */
+function _taxonomy_alter_promote_form_after_build($form, &$form_state) {
+  return $form;
+}
