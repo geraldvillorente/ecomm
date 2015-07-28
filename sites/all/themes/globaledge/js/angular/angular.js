@@ -2,29 +2,29 @@
 
   Drupal.behaviors.angular = {
     attach: function(context, settings) {
-      var dmci = angular.module('dmci', []);
+      var globaledge = angular.module('globaledge', []);
 
-      dmci.controller('newsPageController', function($scope, PollerNews) {
+      globaledge.controller('newsPageController', function($scope, PollerNews) {
         // Response from service.
         $scope.newsPage = PollerNews.data;
       });
 
-      dmci.controller('newsConsUpdateController', function($scope, PollerConsUpdate) {
+      globaledge.controller('newsConsUpdateController', function($scope, PollerConsUpdate) {
         // Response from service.
         $scope.newsCons = PollerConsUpdate.data;
       });
 
-      dmci.controller('newsLatestNewsController', function($scope, PollerLatestNews) {
+      globaledge.controller('newsLatestNewsController', function($scope, PollerLatestNews) {
         // Response from service.
         $scope.newsLatestNews = PollerLatestNews.data;
       });
 
-      dmci.controller('userController', function($scope, PollerUser) {
+      globaledge.controller('userController', function($scope, PollerUser) {
         // Response from service.
         $scope.user = PollerUser.data;
       });
 
-      dmci.controller('reservationListController', function($scope, $http, PollerReservationList) {
+      globaledge.controller('reservationListController', function($scope, $http, PollerReservationList) {
         // Response from service.
         $scope.reservationList = PollerReservationList.data;
 
@@ -44,55 +44,55 @@
         }
       });
 
-      dmci.controller('availabilityController', function($scope, PollerAvailability) {
+      globaledge.controller('availabilityController', function($scope, PollerAvailability) {
         // Response from availability.
         $scope.availability = PollerAvailability.data;
       });
 
-      dmci.controller('updatesController', function($scope, PollerUpdates) {
+      globaledge.controller('updatesController', function($scope, PollerUpdates) {
         // Response from updates.
         $scope.updates = PollerUpdates.data;
       });
 
-      dmci.controller('contactsController', function($scope, PollerContacts) {
+      globaledge.controller('contactsController', function($scope, PollerContacts) {
         // Response from contacts.
         console.log($scope.contacts = PollerContacts.data);
       });
 
-      dmci.controller('propertyController', function($scope, PollerProperty) {
+      globaledge.controller('propertyController', function($scope, PollerProperty) {
         // Response from property.
         $scope.property = PollerProperty.data;
       });
 
       // Run the news Poller.
-      dmci.run(function(PollerNews) {});
+      globaledge.run(function(PollerNews) {});
 
       // Run the construction updates Poller.
-      dmci.run(function(PollerConsUpdate) {});
+      globaledge.run(function(PollerConsUpdate) {});
 
       // Run the latest news Poller.
-      dmci.run(function(PollerLatestNews) {});
+      globaledge.run(function(PollerLatestNews) {});
 
       // Run the user Poller.
-      dmci.run(function(PollerUser) {});
+      globaledge.run(function(PollerUser) {});
 
       // Run the reservation Poller.
-      dmci.run(function(PollerReservationList) {});
+      globaledge.run(function(PollerReservationList) {});
 
       // Run the availability Poller.
-      dmci.run(function(PollerAvailability) {});
+      globaledge.run(function(PollerAvailability) {});
 
       // Run the updates Poller.
-      dmci.run(function(PollerUpdates) {});
+      globaledge.run(function(PollerUpdates) {});
 
       // Run the contacts Poller.
-      dmci.run(function(PollerContacts) {});
+      globaledge.run(function(PollerContacts) {});
 
       // Run the contacts Poller.
-      dmci.run(function(PollerProperty) {});
+      globaledge.run(function(PollerProperty) {});
 
       // Create a poller for news that will create a request every 1000 ms.
-      dmci.factory('PollerNews', function($http, $timeout) {
+      globaledge.factory('PollerNews', function($http, $timeout) {
         var data = {
           response: {},
           calls: 0
@@ -113,7 +113,7 @@
       });
 
       // Create a poller for construction update that will create a request every 1000 ms.
-      dmci.factory('PollerConsUpdate', function($http, $timeout) {
+      globaledge.factory('PollerConsUpdate', function($http, $timeout) {
         var data = {
           response: {},
           calls: 0
@@ -134,7 +134,7 @@
       });
 
       // Create a poller for latest news that will create a request every 1000 ms.
-      dmci.factory('PollerLatestNews', function($http, $timeout) {
+      globaledge.factory('PollerLatestNews', function($http, $timeout) {
         var data = {
           response: {},
           calls: 0
@@ -155,7 +155,7 @@
       });
 
       // Create a poller for user that will create a request every 1000 ms.
-      dmci.factory('PollerUser', function($http, $timeout) {
+      globaledge.factory('PollerUser', function($http, $timeout) {
         var data = {
           response: {},
           calls: 0
@@ -176,7 +176,7 @@
       });
 
       // Create a poller for reservation that will create a request every 1000 ms.
-      dmci.factory('PollerReservationList', function($http, $timeout) {
+      globaledge.factory('PollerReservationList', function($http, $timeout) {
         var data = {
           response: {},
           calls: 0
@@ -197,7 +197,7 @@
       });
 
       // Create a poller for availability that will create a request every 1000 ms.
-      dmci.factory('PollerAvailability', function($http, $timeout) {
+      globaledge.factory('PollerAvailability', function($http, $timeout) {
         var data = {
           response: {},
           calls: 0
@@ -218,7 +218,7 @@
       })
 
       // Create a poller for updates that will create a request every 1000 ms.
-      dmci.factory('PollerUpdates', function($http, $timeout) {
+      globaledge.factory('PollerUpdates', function($http, $timeout) {
         var data = {
           response: {},
           calls: 0
@@ -239,7 +239,7 @@
       })
 
       // Create a poller for contacts that will create a request every 1000 ms.
-      dmci.factory('PollerContacts', function($http, $timeout) {
+      globaledge.factory('PollerContacts', function($http, $timeout) {
         var data = {
           response: {},
           calls: 0
@@ -260,7 +260,7 @@
       })
 
       // Create a poller for property that will create a request every 1000 ms.
-      dmci.factory('PollerProperty', function($http, $timeout) {
+      globaledge.factory('PollerProperty', function($http, $timeout) {
         var data = {
           response: {},
           calls: 0
