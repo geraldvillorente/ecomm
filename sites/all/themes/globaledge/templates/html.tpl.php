@@ -41,7 +41,7 @@
  * @see template_process()
  */
 ?>
-<!DOCTYPE html ng-app="dmci">
+<!DOCTYPE html ng-app="globaledge">
   <!-- Sorry no IE7 support! -->
   <!-- @see http://foundation.zurb.com/docs/index.html#basicHTMLMarkup -->
 
