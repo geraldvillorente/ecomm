@@ -1,5 +1,0 @@
-; $Id = $
-name = DMCI Core
-description = DMCI Core
-package = DMCI Core Modules
-core = 7.x
