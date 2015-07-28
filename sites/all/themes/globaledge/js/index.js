@@ -222,7 +222,7 @@
             var len = data.nodes.length;
             for(var x=0; x<len; x++) {
               var unit_type = "";
-              var img = "/sites/all/themes/dmci/images/layout.png"
+              var img = "/sites/all/themes/globaledge/images/layout.png"
               if (data.nodes[x].node.type == "3 Bedrooms") {
                 unit_type = "three-br";
               } else if (data.nodes[x].node.type == "2 Bedrooms") {
@@ -298,7 +298,7 @@
         $.get('/data/project-units/' + $(this).data('title') + "/all", function(data) {
           for(var x=0; x<data.nodes.length; x++) {
             var unit_type = "";
-            var img = "/sites/all/themes/dmci/images/layout.png"
+            var img = "/sites/all/themes/globaledge/images/layout.png"
             if (data.nodes[x].node.type == "3 Bedrooms") {
               unit_type = "three-br";
             } else if (data.nodes[x].node.type == "2 Bedrooms") {
