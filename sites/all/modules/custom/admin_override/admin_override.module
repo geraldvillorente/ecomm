@@ -1,0 +1,14 @@
+<?php
+/**
+ * @file
+ * AdminOverride module file.
+ */
+
+/**
+ * Implements template_preprocess_page().
+ */
+function admin_override_preprocess_page(&$vars) {
+  if (path_is_admin(current_path())) {
+    drupal_add_css(drupal_get_path('module', 'admin_override') . '/css/override.css');
+  }
+}

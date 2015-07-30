@@ -1,0 +1,5 @@
+name = Admin Override
+description = Override admin configuration and styles.
+package = eComm
+core = 7.x
+version = 7.x-1.0
