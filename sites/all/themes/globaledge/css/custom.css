@@ -9172,3 +9172,7 @@ select option {
     width: 71px;
   }
 }
+
+html > body {
+  padding: 0 2em;
+}
